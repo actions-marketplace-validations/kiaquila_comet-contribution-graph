@@ -6,7 +6,7 @@
   "scripts": {
     "agent:set": "node scripts/set-implementation-agent.mjs",
     "build": "node scripts/build-static.mjs",
-    "build:action": "ncc build src/action.ts -o dist-action --minify --license licenses.txt",
+    "build:action": "pnpm run build:renderer && ncc build dist-renderer/action.js -o dist-action --minify --license licenses.txt",
     "build:renderer": "tsc",
     "check:dist": "pnpm run build:action && node scripts/check-dist.mjs dist-action",
     "check:feature-memory": "node scripts/check-feature-memory.mjs",
@@ -16,7 +16,7 @@
     "check:js": "eslint \"prototypes/**/*.html\"",
     "check:ts": "tsc --noEmit",
     "preflight": "node scripts/preflight.mjs",
-    "format:check": "prettier --check \"prototypes/**/*.html\" \"tests/**/*.mjs\" \"AGENTS.md\" \"CLAUDE.md\" \".specify/**/*.md\" \"specs/**/*.md\" \"docs_comet/**/*.md\" \".github/pull_request_template.md\" \".github/workflows/*.{yml,yaml}\" \".gemini/**/*.{md,yaml,yml}\" \"scripts/**/*.mjs\" \"package.json\" \"vercel.json\" \".htmlvalidate.json\" \"README.md\" \"action.yml\" \"src/**/*.ts\"",
+    "format:check": "prettier --check \"prototypes/**/*.html\" \"tests/**/*.mjs\" \"AGENTS.md\" \"CLAUDE.md\" \".specify/**/*.md\" \"specs/**/*.md\" \"docs_comet/**/*.md\" \".github/pull_request_template.md\" \".github/workflows/*.{yml,yaml}\" \".gemini/**/*.{md,yaml,yml}\" \".comet-control/**/*.json\" \"scripts/**/*.mjs\" \"package.json\" \"vercel.json\" \".htmlvalidate.json\" \"README.md\" \"action.yml\" \"src/**/*.ts\"",
     "test": "pnpm run build:renderer && node --test \"tests/**/*.test.mjs\"",
     "ci": "pnpm run check:repo && pnpm run check:html && pnpm run check:js && pnpm run check:ts && pnpm run build && pnpm run build:action && pnpm run check:dist && pnpm run format:check && pnpm run test",
     "pr:publish": "node scripts/publish-branch.mjs",
@@ -26,19 +26,19 @@
     "worktree:new": "node scripts/new-worktree.mjs"
   },
   "dependencies": {
-    "@actions/core": "^1.11.0",
-    "@actions/exec": "^1.1.1"
+    "@actions/core": "^3.0.1",
+    "@actions/exec": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "@vercel/ncc": "^0.38.0",
-    "eslint": "^9",
+    "@types/node": "^26.2.0",
+    "@vercel/ncc": "^0.45.0",
+    "eslint": "^10",
     "eslint-plugin-html": "^8",
-    "eslint-plugin-unicorn": "^57",
-    "globals": "^16",
-    "html-validate": "^10.11.3",
-    "prettier": "^3.8.1",
-    "typescript": "^5.9.3"
+    "eslint-plugin-unicorn": "^73",
+    "globals": "^17",
+    "html-validate": "^11.10.0",
+    "prettier": "^3.9.6",
+    "typescript": "^7.0.2"
   },
   "packageManager": "pnpm@10.33.0",
   "engines": {
@@ -47,8 +47,11 @@
   },
   "pnpm": {
     "overrides": {
-      "fast-uri": "^3.1.2",
-      "undici": "^6.24.0"
+      "fast-uri": "^3.1.5",
+      "undici": "^6.28.0",
+      "brace-expansion@^1.1.7": "^1.1.18",
+      "brace-expansion@^5.0.0": "^5.0.9",
+      "js-yaml": "^4.3.1"
     }
   }
 }
