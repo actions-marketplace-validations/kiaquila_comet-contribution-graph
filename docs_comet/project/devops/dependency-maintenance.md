@@ -59,3 +59,96 @@ request a human-authored current-head AI review before merge.
   `google/osv-scanner-action` 2.5.0 → 2.5.1: retain immutable SHA pins,
   preserve workflow permissions and trigger policy, and verify the full
   preflight chain before the final-head Codex review.
+- `anthropics/claude-code-action` 1.0.202 → 1.0.211: keep the Claude agent
+  and dormant Claude review workflows on the same immutable release commit,
+  preserve their permissions, triggers, inputs, and prompts, and verify the
+  full preflight chain before the final-head Codex review.
+- Grouped development-tooling maintenance (`@types/node` 26.2.0 → 26.4.0,
+  ESLint 10.9.0 → 10.9.1, `eslint-plugin-html` 8.1.4 → 8.2.0, and
+  html-validate 11.10.0 → 11.11.0): requires strict type checking,
+  prototype JavaScript linting, HTML validation, the Action distribution
+  check, and the complete preflight chain without relaxing configuration.
+- `pnpm/action-setup` 6.0.10 → 6.1.0 and
+  `anthropics/claude-code-action` 1.0.211 → 1.0.217: retain immutable commit
+  pins, preserve all workflow triggers, permissions, inputs, and prompts, and
+  verify the complete preflight chain before the final-head Codex review.
+- Grouped development-tooling maintenance (`@types/node` 26.4.0 → 26.4.1,
+  ESLint 10.9.1 → 10.10.0, `globals` 17.11.0 → 17.12.0, and html-validate
+  11.11.0 → 11.14.0): requires a frozen lockfile install, strict type checking,
+  prototype linting, HTML validation, Action distribution verification, and
+  the complete preflight chain without relaxing configuration.
+- `eslint-plugin-unicorn` v73 → v74: preserve the existing flat-config rule set
+  and verify prototype linting plus the complete preflight chain on ESLint
+  10.10.0; resolve its lockfile update without reverting the grouped tooling
+  versions already merged through PR #44.
+- `anthropics/claude-code-action` 1.0.217 → 1.0.224 and
+  `google/osv-scanner-action/osv-scanner-action` 2.5.1 → 2.6.0: retain
+  immutable commit pins, preserve the Claude workflow contract, and verify
+  both the complete preflight chain and the fail-closed OSV scan before the
+  final-head Codex review.
+- `@types/node` 26.4.1 → 26.5.1 and html-validate 11.14.0 → 11.15.0:
+  require a frozen lockfile install, strict type checking, prototype linting,
+  HTML validation, Action distribution verification, and the complete
+  preflight chain without relaxing configuration.
+- `anthropics/claude-code-action` 1.0.224 → 1.0.231: keep the Claude agent and
+  dormant Claude review workflows pinned to the same immutable release commit,
+  preserve their triggers, permissions, inputs, and prompts, and verify the
+  complete preflight chain before the final-head Codex review. The same
+  maintenance branch raises the existing `undici` override from 6.28.0 to
+  6.28.1 and rebuilds the Action distribution to remediate
+  `GHSA-3wwx-pv8p-q78v` without suppressing the OSV gate.
+- `@types/node` 26.5.1 → 26.6.2 and html-validate 11.15.0 → 11.16.0: require a
+  frozen lockfile install, strict type checking, prototype linting, HTML
+  validation, and the complete preflight chain. ESLint 10.11.0 is deferred: it
+  crashes with `eslint-plugin-html` 8.2.0, while upstream's 8.2.1 fix for issue
+  #342 is still below the repository's seven-day `minimumReleaseAge` threshold.
+- `anthropics/claude-code-action` 1.0.231 → 1.0.236: keep the Claude agent and
+  dormant Claude review workflows pinned to the same immutable release commit,
+  preserve their triggers, permissions, inputs, and prompts, and verify the
+  complete preflight chain before the final-head Codex review. The same
+  maintenance branch raises transitive `source-map-js` from 1.2.1 to 1.2.2 to
+  remediate `GHSA-68fv-2mgg-jv7q` without suppressing the OSV gate. The global
+  seven-day release cooldown remains intact; only `source-map-js@1.2.2` is
+  exempted so the security fix can install immediately.
+- ESLint 10.10.0 → 10.11.0, html-validate 11.16.0 → 11.16.1, and Prettier
+  3.9.6 → 3.9.9: require a frozen lockfile install and the complete preflight
+  chain without relaxing validation. The lockfile must pair ESLint 10.11.0
+  with `eslint-plugin-html` 8.2.1, the now-eligible upstream fix for the
+  processor incompatibility recorded in the preceding maintenance update, and
+  retain the `source-map-js` advisory remediation already present on main.
+- `eslint-plugin-unicorn` v74 → v76: preserve the existing flat-config rule set,
+  run against ESLint 10.11.0, retain the patched `source-map-js` 1.2.2
+  resolution, and verify prototype linting plus the complete preflight chain.
+  New v75 rules and v76 option defaults are not enabled as part of dependency
+  maintenance.
+- `anthropics/claude-code-action` 1.0.236 → 1.0.242: keep the Claude agent
+  and dormant Claude review workflows pinned to the same immutable release
+  commit, preserve their triggers, permissions, inputs, secrets, and prompts,
+  and verify the complete preflight chain before the final-head Codex review.
+- `anthropics/claude-code-action` 1.0.242 → 1.0.248 and
+  `google/osv-scanner-action/osv-scanner-action` 2.6.0 → 2.7.0: retain
+  immutable commit pins, preserve workflow triggers, permissions, inputs,
+  secrets, and prompts, and verify both the complete preflight chain and the
+  fail-closed OSV scan before the final-head Codex review.
+- Grouped development-tooling maintenance (`@types/node` 26.6.2 → 26.6.5,
+  ESLint 10.11.0 → 10.12.0, `globals` 17.12.0 → 17.13.0, html-validate
+  11.16.1 → 11.16.2, and Prettier 3.9.9 → 3.9.10): requires a frozen
+  lockfile install, strict type checking, prototype linting, HTML validation,
+  Action distribution verification, and the complete preflight chain without
+  relaxing configuration.
+- `eslint-plugin-unicorn` v76 → v77: preserve the existing flat-config rule
+  set, resolve its peer snapshot against ESLint 10.12.0, accept only the
+  corresponding transitive lockfile updates, and verify prototype linting plus
+  the complete preflight chain without relaxing configuration.
+- `anthropics/claude-code-action` 1.0.248 → 1.0.254: keep the Claude agent and
+  dormant Claude review workflows pinned to the same immutable release commit,
+  preserve their triggers, permissions, inputs, secrets, and prompts, and
+  verify the complete preflight chain before final-head Codex review. The same
+  maintenance branch raises the existing transitive floors to `fast-uri` 3.1.9
+  and `undici` 6.29.1 to clear their OSV advisories without suppressing or
+  weakening the fail-closed scan.
+- ESLint 10.12.0 → 10.13.0 and html-validate 11.16.2 → 11.17.0: retain the
+  existing lint and HTML-validation configuration, preserve the patched
+  `fast-uri` 3.1.9 and `undici` 6.29.1 resolutions from the current base, and
+  verify prototype linting, HTML validation, the Action distribution, and the
+  complete preflight chain without relaxing validation.
